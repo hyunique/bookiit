@@ -1,4 +1,25 @@
-let myLibrary = [];
+let myLibrary = [
+    {
+        author: "Rebecca Solnit",
+        title: "A field guide to getting lost",
+        pages: 215,
+        read: true
+    },
+    {
+        author: 'Tolkien',
+        title: 'Hobbit',
+        pages: 295,
+        read: false
+    }
+];
+let openModalBtn = document.querySelector('.openModal')
+let modal = document.querySelector('.modal')
+let closeModal = document.querySelector('.close')
+let form = document.querySelector('.form')
+const authorInput = form.querySelector('#author')
+const titleInput = form.querySelector('#title')
+const pagesInput = form.querySelector('#pages')
+const addBookBtn = form.querySelector('.addBook')
 
 function Book(author, title, pages, read) {
     this.title = title;
@@ -7,12 +28,15 @@ function Book(author, title, pages, read) {
     this.read = read;
 }
 
-const book1 = new Book("Rebecca Solnit", "A field guide to getting lost", 215, "O")
-const book2 = new Book('Tolkien', 'Hobbit', '295', 'X');
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
-    return myLibrary;
+function addBookToLibrary() {
+    let authorValue = authorInput.value
+    let titleValue = titleInput.value
+    let pagesValue = pagesInput.value
+    let readValue = read.value //need to work on
+    const newBook = new Book(authorValue, titleValue, pagesValue, readValue)
+    myLibrary.push(newBook);
+    return myLibrary
 }
 
 function showBooks() {
@@ -22,13 +46,12 @@ function showBooks() {
 }
 
 
-
-let modal = document.querySelector('.modal')
-let modalBtn = document.querySelector('.addNewBook')
-let closeModal = document.querySelector('.close')
-
-modalBtn.addEventListener('click', function () {
+openModalBtn.addEventListener('click', function () {
     modal.style.display = 'block'
+})
+
+addBookBtn.addEventListener('click', () => {
+    addBookToLibrary()
 })
 
 // closeModal.addEventListener('click', function (event) {
