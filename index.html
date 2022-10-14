@@ -5,11 +5,46 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         <title>Library</title>
     </head>
 
     <body>
+        <header>
+            <h1>Library</h1>
+        </header>
 
+
+        <main>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quod praesentium placeat consequatur
+                libero,
+                nesciunt pariatur labore veritatis vitae sunt assumenda.</p>
+            <button class="addNewBook">New Book</button>
+
+        </main>
+
+
+        <footer>
+
+        </footer>
+
+
+        <div id="addBookModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="">
+                    <label for="autor">Author</label>
+                    <input type="text" id="author" name="author">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="pages">Total Pages</label>
+                    <input type="text" id="pages" name="pages">
+                    <label for="read">Have read?</label>
+                    <input type="checkbox" id="read" name="read">
+                </form>
+            </div>
+        </div>
         <script src="app.js"></script>
     </body>
 
