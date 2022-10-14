@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
         <title>Library</title>
     </head>
@@ -16,16 +18,22 @@
 
 
         <main>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quod praesentium placeat consequatur
-                libero,
-                nesciunt pariatur labore veritatis vitae sunt assumenda.</p>
-            <button class="addNewBook">New Book</button>
+            <p>So many books, so little time!</p>
+            <button class="openModal">New Book</button>
 
         </main>
 
 
         <footer>
-
+            <p>
+                Copyright ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                hyunique
+            </p>
+            <a href="https://github.com/hyunique" target="_blank">
+                <i class="fab fa-github"></i></a>
         </footer>
 
 
@@ -33,7 +41,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form action="">
+                <form action="" class="form">
                     <label for="autor">Author</label>
                     <input type="text" id="author" name="author">
                     <label for="title">Title</label>
@@ -42,6 +50,7 @@
                     <input type="text" id="pages" name="pages">
                     <label for="read">Have read?</label>
                     <input type="checkbox" id="read" name="read">
+                    <button class="addBook">Add</button>
                 </form>
             </div>
         </div>
