@@ -7,6 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,600;1,200&display=swap"
+            rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <title>Library</title>
     </head>
@@ -14,13 +18,47 @@
     <body>
         <header>
             <h1>Library</h1>
+            <p>So many books, so little time!</p>
         </header>
 
 
         <main>
-            <p>So many books, so little time!</p>
-            <button class="openModal">New Book</button>
-
+            <ul class="books">
+                <div id="addBookModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form action="" class="form">
+                            <label for="autor">Author</label>
+                            <input type="text" id="author" name="author">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title">
+                            <label for="pages">Total Pages</label>
+                            <input type="text" id="pages" name="pages">
+                            <label for="read">Have read?</label>
+                            <input type="checkbox" id="read" name="read">
+                            <button class="addBook">Add</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- <li class="bookList">
+                    <h2 class="book__title"></h2>
+                    <div class="book__details">
+                        <span class="books__icon"></span>
+                        <span class="books__unit">Written by</span>
+                        <span class="books__value">Rebecca</span>
+                    </div>
+                    <div class="book__details">
+                        <span class="books__icon"></span>
+                        <span class="books__value">166</span>
+                        <span class="books__unit">pages</span>
+                    </div>
+                </li> -->
+                <div class="button">
+                    <button class="openModalBtn">+</button>
+                    <button class="openModalBtnHidden">Add New Book</button>
+                </div>
+            </ul>
         </main>
 
 
@@ -37,23 +75,6 @@
         </footer>
 
 
-        <div id="addBookModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <form action="" class="form">
-                    <label for="autor">Author</label>
-                    <input type="text" id="author" name="author">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title">
-                    <label for="pages">Total Pages</label>
-                    <input type="text" id="pages" name="pages">
-                    <label for="read">Have read?</label>
-                    <input type="checkbox" id="read" name="read">
-                    <button class="addBook">Add</button>
-                </form>
-            </div>
-        </div>
         <script src="app.js"></script>
     </body>
 

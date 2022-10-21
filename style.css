@@ -130,12 +130,65 @@ table {
     border-spacing: 0;
 }
 
-h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 40px;
-    font-weight: bold;
+
+/*//////////////////////////////////////////////*/
+
+:root {
+    --color-brand--1: #fff;
+    --color-brand--2: #fff;
+
+    --color-dark--1: #fff;
+    --color-light-1: #fff;
+
+    --font-main: 'Josefin Sans', sans-serif;
 }
 
+/*//////////////////////////////////////////////*/
+body {
+    font-family: var(--font-main);
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.openModalBtn {
+    font-size: 40px;
+    border-radius: 50%;
+    border-style: none;
+    background-color: rgb(114, 62, 255);
+    color: #fff;
+    height: 60px;
+    width: 60px;
+}
+
+.openModalBtnHidden {
+    display: none;
+}
+
+.openModalBtn:hover+.openModalBtnHidden {
+    /*Add New Book*/
+    display: block;
+    background-color: #fff;
+    color: rgb(114, 62, 255);
+    border-style: none;
+}
 
 /*Modal pop-up*/
 .modal {
