@@ -12,12 +12,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,600;1,200&display=swap"
             rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <title>Library</title>
+        <title>Bookiit</title>
     </head>
 
     <body>
         <header>
-            <h1>Library</h1>
+            <h1>Bookiit</h1>
+            <h3>Your personal book collection</h3>
             <p>So many books, so little time!</p>
         </header>
 
@@ -41,6 +42,11 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="button">
+                    <button class="openModalBtn">+</button>
+                    <span class="openModalBtnHidden">Add New Book</span>
+                </div>
                 <!-- <li class="bookList">
                     <h2 class="book__title"></h2>
                     <div class="book__details">
@@ -54,11 +60,34 @@
                         <span class="books__unit">pages</span>
                     </div>
                 </li> -->
-                <div class="button">
-                    <button class="openModalBtn">+</button>
-                    <span class="openModalBtnHidden">Add New Book</span>
-                </div>
             </ul>
+            <div class="container__card">
+                <div class="data__card">
+                    <div class="books__value title">
+                        <span class="">A field guide to getting lost</span>
+                    </div>
+                    <div class="book__details">
+                        <span class="books__icon">🖊️</span>
+                        <span class="books__unit">Author</span>
+                        <span class="books__value">Rebecca Solnit</span>
+                    </div>
+                    <div class="book__details">
+                        <span class="books__icon">📖</span>
+                        <span class="books__unit">Pages</span>
+                        <span class="books__value">166</span>
+                    </div>
+                    <div class="book__details">
+                        <span class="books__icon">🔖</span>
+                        <span class="books__unit">Read?</span>
+                        <span class="books__value">Yes</span>
+                    </div>
+                    <div class="card__btn">
+                        <button class="card__edit">Edit</button>
+                        <button class="card__delete">Delete</button>
+                    </div>
+                </div>
+
+            </div>
         </main>
 
 
@@ -68,10 +97,10 @@
                 <script>
                     document.write(new Date().getFullYear())
                 </script>
-                hyunique
+                <a href="https://github.com/hyunique" target="_blank">
+                    hyunique</a>
             </p>
-            <a href="https://github.com/hyunique" target="_blank">
-                <i class="fab fa-github"></i></a>
+
         </footer>
 
 
