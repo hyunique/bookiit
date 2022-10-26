@@ -14,12 +14,13 @@ let myLibrary = [
 ];
 let openModalBtn = document.querySelector('.openModalBtn')
 let modal = document.querySelector('.modal')
-let closeModal = document.querySelector('.close')
+let closeModal = document.querySelector('.closeModal')
 let form = document.querySelector('.form')
 const authorInput = form.querySelector('#author')
 const titleInput = form.querySelector('#title')
 const pagesInput = form.querySelector('#pages')
-const addBookBtn = form.querySelector('.addBook')
+const addBookBtn = form.querySelector('.addBookBtn')
+
 
 
 //constructor function to make new object
@@ -30,19 +31,20 @@ function Book(author, title, pages, read) {
     this.read = read;
 }
 
+const authorValue = authorInput.value
+const titleValue = titleInput.value
+const pagesValue = +pagesInput.value
+const readValue = read.value //need to work on
 // add input value to library object
-function addBookToLibrary() {
-    let authorValue = authorInput.value
-    let titleValue = titleInput.value
-    let pagesValue = +pagesInput.value
-    let readValue = read.value //need to work on
+function addBookToLibrary(e) {
     const newBook = new Book(authorValue, titleValue, pagesValue, readValue)
     myLibrary.push(newBook);
     renderLibrary(newBook)
+    e.preventDefault()
 }
 
 // render new object in the book card
-function renderLibrary(newBook) {
+function renderLibraryCard(newBook) {
     let html = `
     <div class="data__card" data-id="">
          <h2 class="books__value title">${newBook.title}</h2>
@@ -85,12 +87,20 @@ addBookBtn.addEventListener('click', () => {
     addBookToLibrary()
 })
 
-// closeModal.addEventListener('click', function (event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none"
-//     }
-// })
+//loop object and render
+myLibrary.forEach(book => { renderLibraryCard(book) })
+
+closeModal.addEventListener('click', function (event) {
+
+    modal.style.display = "none"
+
+})
 
 
-//Challenge ideas : books-owned, add bookcover photos,total pages of books read,
+// Challenge ideas
+//  books - owned
+//  add bookcover photos
+//  total pages of books read
+//  storage api
+
 //oct 25 todo: js functions(display modal window, add data to list)
