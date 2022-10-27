@@ -217,7 +217,7 @@ main {
 }
 
 .modal {
-    display: flex;
+    display: none;
     position: fixed;
     left: 40%;
     top: 300px;
@@ -282,7 +282,18 @@ label {
     cursor: pointer;
 }
 
-.addBook:hover {
+
+/* .addBookBtn:disabled {
+    background-color: rgb(177, 177, 177);
+} */
+
+/*
+Use
+:active:hover:not([disabled])
+to apply hover effect only on enabled button
+*/
+
+.addBookBtn:hover {
     background-color: var(--color-brand--3);
     color: var(--color-brand--2);
 }
@@ -302,7 +313,6 @@ label {
 
 .data__card {
     display: grid;
-
     grid-gap: 8px;
     background-color: var(--color-brand--1);
     color: var(--color-brand--3);
@@ -341,6 +351,7 @@ label {
     border-radius: 6px;
     /* height: 100%; */
     margin-top: 14px;
+    cursor: pointer;
 }
 
 
