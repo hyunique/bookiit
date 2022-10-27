@@ -26,7 +26,7 @@ class NewBook {
 
 class App {
 
-    #myLibrary = []
+    myLibrary = []
 
     // add input value to library object
     constructor() {
@@ -36,9 +36,6 @@ class App {
         closeModal.addEventListener('click', this.hideModal)
         addBookBtn.addEventListener('click', this.newBook.bind(this))
 
-        //loop object and render
-        // this.renderLibraryCard(book)
-
     }
 
     showModal() {
@@ -46,23 +43,32 @@ class App {
     }
     hideModal() {
         modal.style.display = "none"
+        authorInput.value = titleInput.value = pagesInput.value = pagesInput.value = ''
     }
 
     newBook(e) {
+
         // Prevent default reload of submit
         e.preventDefault()
 
         // Get data from form
+
         const authorValue = authorInput.value
         const titleValue = titleInput.value
         const pagesValue = +pagesInput.value
         const readValue = read.value //need to work on
-        let bookData = new NewBook(titleValue, authorValue, pagesValue, readValue)
-        // myLibrary.push(newBook);
-        // renderLibrary(newBook)
 
-        this.#myLibrary.push(bookData)
+
+        //if one of the input values is empty, alert message
+        //if all is fiiled in, activate add button
+        if (authorValue === '' || titleValue === '' || pagesValue === '') {
+            // document.querySelector('.addBookBtn').disabled = false
+            return alert("Please fill in all information")
+        }
+        let bookData = new NewBook(titleValue, authorValue, pagesValue, readValue)
+        this.myLibrary.push(bookData)
         this.renderLibraryCard(bookData)
+        this.hideModal()
 
     }
 
