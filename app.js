@@ -8,7 +8,7 @@ const authorInput = form.querySelector('#author')
 const titleInput = form.querySelector('#title')
 const pagesInput = form.querySelector('#pages')
 const addBookBtn = form.querySelector('.addBookBtn')
-
+const cardContainer = document.querySelector('.container__card')
 const card = document.querySelector('.data__card')
 const cardEdit = document.querySelector('.card__edit')
 
@@ -55,9 +55,11 @@ class App {
         authorInput.value = titleInput.value = pagesInput.value = pagesInput.value = ''
     }
     deleteData() {
+
         //In an event, 'this' refers to the element that received the event.
 
         deleteBtns.forEach(btn => {
+
             btn.addEventListener('click', function handleClick() {
                 console.log('delete item');
             });
@@ -131,21 +133,20 @@ class App {
         editBtn.addEventListener('click', () => { console.log('edit') })
         cardBtn.appendChild(editBtn)
 
+
         const deleteBtn = document.createElement('button')
         deleteBtn.innerHTML = 'Delete'
         deleteBtn.classList.add('card__delete')
-        deleteBtn.addEventListener('click', () => { console.log('delete') })
+        deleteBtn.addEventListener('click', (e) => {
+            console.log(e.target.parentElement.parentElement.id)
+            // cardContainer.removeChild(card)
+            // this.myLibrary.splice(card, 1)
+        })
+
+
         cardBtn.appendChild(deleteBtn)
-
-
-
-
-
     }
-
-
 }
-
 
 
 const app = new App(); // create App object and store data in it
@@ -163,4 +164,6 @@ const app = new App(); // create App object and store data in it
 //  total pages of books read
 //  storage api
 
-//oct 28 todo: attach delete function to buttons(maybe use forEach), delete item by selecting id(splice or filter or do more research)
+//oct 30 todo: delete item by selecting id(splice or filter or do more research)
+
+// click - getElemnetbyId(this.id).splice 
