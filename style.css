@@ -206,15 +206,15 @@ main {
     transform: rotate(90deg);
 }
 
-.openModalBtnHidden {
+/* .openModalBtnHidden {
     display: none;
     padding: 10px;
-}
+} */
 
-.openModalBtn:hover+.openModalBtnHidden {
+/* .openModalBtn:hover+.openModalBtnHidden {
     display: block;
     color: var(--color-brand--1);
-}
+} */
 
 .modal {
     display: none;

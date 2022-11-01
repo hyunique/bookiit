@@ -29,7 +29,6 @@ class NewBook {
     }
 
 }
-
 let deleteBtns = document.querySelectorAll('.card__delete')
 
 class App {
@@ -90,9 +89,8 @@ class App {
 
     }
 
-    // addToLibrary() {
-    //     this.myLibrary.push(newBook)
-    // }
+
+
 
     // render new object in the book card
     renderLibraryCard(newBook) {//add input type checkbox
@@ -138,25 +136,24 @@ class App {
         deleteBtn.innerHTML = 'Delete'
         deleteBtn.classList.add('card__delete')
         deleteBtn.addEventListener('click', (e) => {
-            console.log(e.target.parentElement.parentElement.id)
-            // cardContainer.removeChild(card)
-            // this.myLibrary.splice(card, 1)
+            let elem = e.target.parentNode.parentNode
+            elem.parentElement.removeChild(elem)
         })
-
-
         cardBtn.appendChild(deleteBtn)
     }
+    // removeById(arr, dataId) {
+    //     const objectById = arr.findIndex((myLibrary) => { myLibrary.id === dataId })
+    //     arr.splice(objectById, 1)
+    //     return arr
+    // }
+
 }
 
 
 const app = new App(); // create App object and store data in it
+// const book1 = new NewBook('A field guide to getting lost', 'Rebecca Solnit', '253', 'Yes')
 
 
-// for (let btn of deleteBtns) {
-//     btn.addEventListener('click', () => {
-//         console.log('Delete item')
-//     })
-// }
 
 // Challenge ideas
 //  books - owned
@@ -164,6 +161,4 @@ const app = new App(); // create App object and store data in it
 //  total pages of books read
 //  storage api
 
-//oct 30 todo: delete item by selecting id(splice or filter or do more research)
-
-// click - getElemnetbyId(this.id).splice 
+//Nov 2 :  deleteBtn:find a way to remove completely from object array
