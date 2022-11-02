@@ -335,12 +335,13 @@ to apply hover effect only on enabled button
 
 .card__btn {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-gap: 6px;
 
 }
 
+.card__read,
 .card__edit,
 .card__delete {
     font-family: var(--font-main);
@@ -352,6 +353,10 @@ to apply hover effect only on enabled button
     /* height: 100%; */
     margin-top: 14px;
     cursor: pointer;
+}
+
+.card__read.read {
+    background-color: var(--color-brand--4);
 }
 
 

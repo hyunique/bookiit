@@ -7,6 +7,7 @@ let form = document.querySelector('.form')
 const authorInput = form.querySelector('#author')
 const titleInput = form.querySelector('#title')
 const pagesInput = form.querySelector('#pages')
+const readInput = form.querySelector('#read')
 const addBookBtn = form.querySelector('.addBookBtn')
 const cardContainer = document.querySelector('.container__card')
 const card = document.querySelector('.data__card')
@@ -51,7 +52,7 @@ class App {
     }
     hideModal() {
         modal.style.display = "none"
-        authorInput.value = titleInput.value = pagesInput.value = pagesInput.value = ''
+        authorInput.value = titleInput.value = pagesInput.value = ''
     }
     deleteData() {
 
@@ -73,7 +74,7 @@ class App {
         const authorValue = authorInput.value
         const titleValue = titleInput.value
         const pagesValue = +pagesInput.value
-        const readValue = read.value //need to work on
+        const readValue = readInput.value //need to work on
 
         //if one of the input values is empty, alert message
         if (authorValue === '' || titleValue === '' || pagesValue === '') {
@@ -82,7 +83,9 @@ class App {
 
         let newBook = new NewBook(titleValue, authorValue, pagesValue, readValue)
 
-        this.hideModal()
+        if (read)
+
+            this.hideModal()
         this.myLibrary.push(newBook)
         this.renderLibraryCard(newBook)
         // this.deleteData()
@@ -125,6 +128,12 @@ class App {
         cardBtn.classList.add('card__btn')
         dataCard.appendChild(cardBtn)
 
+        const readBtn = document.createElement('button')
+        readBtn.innerHTML = 'To read'
+        readBtn.classList.add('card__read')
+        readBtn.addEventListener('click', () => { console.log('read') })
+        cardBtn.appendChild(readBtn)
+
         const editBtn = document.createElement('button')
         editBtn.innerHTML = 'Edit'
         editBtn.classList.add('card__edit')
@@ -136,8 +145,9 @@ class App {
         deleteBtn.innerHTML = 'Delete'
         deleteBtn.classList.add('card__delete')
         deleteBtn.addEventListener('click', (e) => {
-            let elem = e.target.parentNode.parentNode
-            elem.parentElement.removeChild(elem)
+
+            let card = e.target.parentNode.parentNode
+            card.parentElement.removeChild(card)
         })
         cardBtn.appendChild(deleteBtn)
     }
@@ -146,8 +156,11 @@ class App {
     //     arr.splice(objectById, 1)
     //     return arr
     // }
+    // app.myLibrary[i].id
 
 }
+
+
 
 
 const app = new App(); // create App object and store data in it
