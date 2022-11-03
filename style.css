@@ -182,13 +182,13 @@ main {
 }
 
 /*Modal pop-up*/
-.button {
+
+.books {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 40px;
 }
+
 
 .openModalBtn {
     font-size: 40px;
@@ -198,6 +198,7 @@ main {
     color: #fff;
     height: 50px;
     width: 50px;
+    margin: 40px;
     transition: transform .5s ease-out;
     cursor: pointer;
 }
@@ -219,7 +220,6 @@ main {
 .modal {
     display: none;
     position: fixed;
-    left: 40%;
     top: 300px;
     width: 320px;
 }
@@ -306,6 +306,7 @@ to apply hover effect only on enabled button
     grid-auto-flow: row;
     grid-gap: 10px;
     margin: 0 30px;
+    justify-content: center;
 }
 
 
@@ -318,6 +319,12 @@ to apply hover effect only on enabled button
     color: var(--color-brand--3);
     border-radius: 16px;
     padding: 30px;
+    transition: .3s ease-in;
+}
+
+.data__card.isRead {
+    background-color: var(--color-brand--3);
+    color: var(--color-brand--1);
 }
 
 .book__details {
@@ -347,6 +354,7 @@ to apply hover effect only on enabled button
     font-size: 18px;
 }
 
+
 .card__read {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -356,7 +364,6 @@ to apply hover effect only on enabled button
 
 .card__edit,
 .card__delete {
-
     grid-row-start: 2;
     grid-row-end: 3;
 }
@@ -382,9 +389,12 @@ to apply hover effect only on enabled button
 footer {
     width: 100%;
     display: block;
-    /* position: fixed;
-    bottom: 0; */
     text-align: center;
     color: black;
     padding: 20px 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--color-brand--1);
 }
