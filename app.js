@@ -83,9 +83,9 @@ class App {
 
         let newBook = new NewBook(titleValue, authorValue, pagesValue, readValue)
 
-        if (read)
 
-            this.hideModal()
+
+        this.hideModal()
         this.myLibrary.push(newBook)
         this.renderLibraryCard(newBook)
         // this.deleteData()
@@ -131,7 +131,15 @@ class App {
         const readBtn = document.createElement('button')
         readBtn.innerHTML = 'To read'
         readBtn.classList.add('card__read')
-        readBtn.addEventListener('click', () => { console.log('read') })
+        readBtn.addEventListener('click', () => {
+            if (readInput.checked === true) {
+                readBtn.innerHTML = 'Finished'
+                readBtn.classList.add('read')
+            } else {
+                readBtn.innerHTML = 'To read'
+                readBtn.classList.remove('read')
+            }
+        })
         cardBtn.appendChild(readBtn)
 
         const editBtn = document.createElement('button')
