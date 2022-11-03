@@ -302,9 +302,7 @@ to apply hover effect only on enabled button
 /* Data display card*/
 .container__card {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    /* grid-template-rows: 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
     grid-auto-flow: row;
     grid-gap: 10px;
     margin: 0 30px;
@@ -312,33 +310,55 @@ to apply hover effect only on enabled button
 
 
 .data__card {
-    display: grid;
-    grid-gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: var(--color-brand--1);
     color: var(--color-brand--3);
     border-radius: 16px;
     padding: 30px;
 }
 
-.books__value.title {
+.book__details {
+    width: 220px;
+    line-height: 1.6;
+    text-align: center;
     font-size: 20px;
+}
+
+.book__title {
+    font-size: 24px;
     border-bottom: .5px solid var(--color-brand--2);
     padding-bottom: 20px;
     margin-bottom: 20px;
-    line-height: 1.2;
+    /* overflow: hidden; */
 }
 
-.book__details {
-    display: grid;
-    grid-template-columns: 1fr 2fr 5fr;
-}
 
 .card__btn {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-gap: 6px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8px;
+    width: 220px;
+    height: 80px;
+    margin-top: 14px;
+    font-size: 18px;
+}
 
+.card__read {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.card__edit,
+.card__delete {
+
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 .card__read,
@@ -350,8 +370,6 @@ to apply hover effect only on enabled button
     min-height: 32px;
     border: none;
     border-radius: 6px;
-    /* height: 100%; */
-    margin-top: 14px;
     cursor: pointer;
 }
 

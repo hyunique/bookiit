@@ -102,26 +102,14 @@ class App {
         dataCard.classList.add('data__card')
         containerCard.appendChild(dataCard)
         dataCard.setAttribute('id', newBook.id)
+
         let html = `    
-         <h2 class="books__value title">${newBook.title}</h2>
-
         <div class="book__details">
-            <span class="books__icon">🖊️</span>
-            <span class="books__unit">Author</span>
-            <span class="books__value">${newBook.author}</span>
-        </div>
-        <div class="book__details">
-            <span class="books__icon">📖</span>
-            <span class="books__unit">Pages</span>
-            <span class="books__value">${newBook.pages}</span>
-        </div>
-        <div class="book__details">
-            <span class="books__icon">🔖</span>
-            <span class="books__unit">Read?</span>  
-            <span class="books__value">${newBook.read}</span>
-        </div>                   
-    `;
-
+         <h2 class="book__title">${newBook.title}</h2>
+         <h2 class="book__author">🖊️ by ${newBook.author}</h2>
+         <h2 class="book__author">📖 ${newBook.pages} pages</h2>
+         <div>
+           `;
         dataCard.insertAdjacentHTML('afterbegin', html)
 
         const cardBtn = document.createElement('div')
