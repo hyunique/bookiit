@@ -1,5 +1,11 @@
 
 
+
+//Note on nov 3 :
+// deleting and marking is read has to be connected with object data.
+// check challenge ideas and implement
+// minor style adjustment is needed
+
 let openModalBtn = document.querySelector('.openModalBtn')
 let modal = document.querySelector('.modal')
 let closeModal = document.querySelector('.closeModal')
@@ -14,23 +20,20 @@ const card = document.querySelector('.data__card')
 const cardEdit = document.querySelector('.card__edit')
 
 
-
-
 class NewBook {
     // Create id per object
     id = (Date.now() + '').slice(-10)
 
     //constructor function to make new object
-    constructor(title, author, pages, read) {
+    constructor(title, author, pages, isread) {
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.read = read;
-
+        this.isread = isread;
     }
-
 }
-let deleteBtns = document.querySelectorAll('.card__delete')
+
+
 
 class App {
 
@@ -38,12 +41,11 @@ class App {
 
     // add input value to library object
     constructor() {
-
         // Attach event handlers to modal 
         openModalBtn.addEventListener('click', this.showModal)
         closeModal.addEventListener('click', this.hideModal)
         addBookBtn.addEventListener('click', this.newBook.bind(this))
-        // cardEdit.addEventListener('click',)
+
         this.deleteData()
     }
 
@@ -83,16 +85,11 @@ class App {
 
         let newBook = new NewBook(titleValue, authorValue, pagesValue, readValue)
 
-
-
         this.hideModal()
         this.myLibrary.push(newBook)
         this.renderLibraryCard(newBook)
         // this.deleteData()
-
     }
-
-
 
 
     // render new object in the book card
@@ -120,13 +117,18 @@ class App {
         readBtn.innerHTML = 'To read'
         readBtn.classList.add('card__read')
         readBtn.addEventListener('click', () => {
-            if (readInput.checked === true) {
-                readBtn.innerHTML = 'Finished'
-                readBtn.classList.add('read')
-            } else {
+            if (readBtn.innerHTML === 'Finished') {
                 readBtn.innerHTML = 'To read'
                 readBtn.classList.remove('read')
+                dataCard.classList.remove('isRead')
+                readInput.checked = false;
+            } else if (readBtn.innerHTML === 'To read') {
+                readBtn.innerHTML = 'Finished'
+                readBtn.classList.add('read')
+                dataCard.classList.add('isRead')
+                readInput.checked = true;
             }
+
         })
         cardBtn.appendChild(readBtn)
 
@@ -147,20 +149,10 @@ class App {
         })
         cardBtn.appendChild(deleteBtn)
     }
-    // removeById(arr, dataId) {
-    //     const objectById = arr.findIndex((myLibrary) => { myLibrary.id === dataId })
-    //     arr.splice(objectById, 1)
-    //     return arr
-    // }
-    // app.myLibrary[i].id
-
 }
 
 
-
-
 const app = new App(); // create App object and store data in it
-// const book1 = new NewBook('A field guide to getting lost', 'Rebecca Solnit', '253', 'Yes')
 
 
 
@@ -170,4 +162,3 @@ const app = new App(); // create App object and store data in it
 //  total pages of books read
 //  storage api
 
-//Nov 2 :  deleteBtn:find a way to remove completely from object array
