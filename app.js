@@ -1,15 +1,10 @@
 
 
-
-//Note on nov 3 :
-// deleting and marking is read has to be connected with object data.
-// check challenge ideas and implement
-// minor style adjustment is needed
-
-let openModalBtn = document.querySelector('.openModalBtn')
-let modal = document.querySelector('.modal')
-let closeModal = document.querySelector('.closeModal')
-let form = document.querySelector('.form')
+const openModalBtn = document.querySelector('.openModalBtn')
+const modal = document.querySelector('.modal')
+const modalBackground = document.querySelector('.modalBackground')
+const closeModal = document.querySelector('.closeModal')
+const form = document.querySelector('.form')
 const authorInput = form.querySelector('#author')
 const titleInput = form.querySelector('#title')
 const pagesInput = form.querySelector('#pages')
@@ -18,7 +13,7 @@ const addBookBtn = form.querySelector('.addBookBtn')
 const cardContainer = document.querySelector('.container__card')
 const card = document.querySelector('.data__card')
 const cardEdit = document.querySelector('.card__edit')
-
+let myLibrary= []
 
 class NewBook {
     // Create id per object
@@ -37,7 +32,7 @@ class NewBook {
 
 class App {
 
-    myLibrary = []
+    // myLibrary = []
 
     // add input value to library object
     constructor() {
@@ -45,28 +40,28 @@ class App {
         openModalBtn.addEventListener('click', this.showModal)
         closeModal.addEventListener('click', this.hideModal)
         addBookBtn.addEventListener('click', this.newBook.bind(this))
-
-        this.deleteData()
-    }
+        }
 
     showModal() {
         modal.style.display = "block"
+        modalBackground.style.display = "block"
     }
     hideModal() {
         modal.style.display = "none"
+        modalBackground.style.display = "none"
         authorInput.value = titleInput.value = pagesInput.value = ''
     }
-    deleteData() {
+    // deleteData() {
 
-        //In an event, 'this' refers to the element that received the event.
+    //     //In an event, 'this' refers to the element that received the event.
 
-        deleteBtns.forEach(btn => {
+    //     deleteBtns.forEach(btn => {
 
-            btn.addEventListener('click', function handleClick() {
-                console.log('delete item');
-            });
-        });
-    }
+    //         btn.addEventListener('click', function handleClick() {
+    //             console.log('delete item');
+    //         });
+    //     });
+    // }
 
     newBook(e) {
         // Prevent default reload of submit
@@ -86,8 +81,8 @@ class App {
         let newBook = new NewBook(titleValue, authorValue, pagesValue, readValue)
 
         this.hideModal()
-        this.myLibrary.push(newBook)
         this.renderLibraryCard(newBook)
+        myLibrary.push(newBook)
         // this.deleteData()
     }
 
@@ -142,23 +137,34 @@ class App {
         const deleteBtn = document.createElement('button')
         deleteBtn.innerHTML = 'Delete'
         deleteBtn.classList.add('card__delete')
+        cardBtn.appendChild(deleteBtn)
         deleteBtn.addEventListener('click', (e) => {
-
             let card = e.target.parentNode.parentNode
             card.parentElement.removeChild(card)
-        })
-        cardBtn.appendChild(deleteBtn)
+            let bookId = myLibrary.find(arr => arr.id === newBook.id)
+            myLibrary.pop(bookId)
+        });
     }
 }
 
+
+// Google Books API
+const testData = fetch('https://www.googleapis.com/books/v1/volumes?q=flights+inauthor:olga&key=AIzaSyDLXEtdYc3Vd0fhAsIoXR-rjr1mMAW_32w')
+    .then(response => response.json())
+    .then(result => {
+        const bookInfo = result.items[0].volumeInfo;
+        const {authors, categories, language, pageCount, title} =bookInfo
+        console.log(authors, categories, language, pageCount, title)
+        console.log(bookInfo.imageLinks.thumbnail)
+        //authors, categories, imageLinks.thumbnail, language, pageCount, title
+    });
 
 const app = new App(); // create App object and store data in it
 
 
 
 // Challenge ideas
-//  books - owned
+
 //  add bookcover photos
-//  total pages of books read
 //  storage api
 
