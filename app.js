@@ -1,5 +1,4 @@
 
-
 const openModalBtn = document.querySelector('.openModalBtn')
 const modal = document.querySelector('.modal')
 const modalBackground = document.querySelector('.modalBackground')
@@ -14,6 +13,8 @@ const cardContainer = document.querySelector('.container__card')
 const card = document.querySelector('.data__card')
 const cardEdit = document.querySelector('.card__edit')
 let myLibrary= []
+
+
 
 class NewBook {
     // Create id per object
@@ -31,9 +32,6 @@ class NewBook {
 
 
 class App {
-
-    // myLibrary = []
-
     // add input value to library object
     constructor() {
         // Attach event handlers to modal 
@@ -51,17 +49,8 @@ class App {
         modalBackground.style.display = "none"
         authorInput.value = titleInput.value = pagesInput.value = ''
     }
-    // deleteData() {
 
-    //     //In an event, 'this' refers to the element that received the event.
-
-    //     deleteBtns.forEach(btn => {
-
-    //         btn.addEventListener('click', function handleClick() {
-    //             console.log('delete item');
-    //         });
-    //     });
-    // }
+  
 
     newBook(e) {
         // Prevent default reload of submit
@@ -71,7 +60,7 @@ class App {
         const authorValue = authorInput.value
         const titleValue = titleInput.value
         const pagesValue = +pagesInput.value
-        const readValue = readInput.value //need to work on
+        const readValue = readInput.checked 
 
         //if one of the input values is empty, alert message
         if (authorValue === '' || titleValue === '' || pagesValue === '') {
@@ -92,6 +81,7 @@ class App {
         const containerCard = document.querySelector('.container__card')
         const dataCard = document.createElement('div')
         dataCard.classList.add('data__card')
+        if(readInput.checked) dataCard.classList.add('isRead')
         containerCard.appendChild(dataCard)
         dataCard.setAttribute('id', newBook.id)
 
@@ -109,29 +99,46 @@ class App {
         dataCard.appendChild(cardBtn)
 
         const readBtn = document.createElement('button')
+            // let readBtnHtml = `
+            // <label class="switch">
+            //     <input type="checkbox">
+            //     <span class="slider round"></span>
+            // </label>`
+            // cardBtn.insertAdjacentHTML('afterbegin', readBtnHtml)
+
+     
         readBtn.innerHTML = 'To read'
         readBtn.classList.add('card__read')
+        cardBtn.appendChild(readBtn)
+        if (readInput.checked) {
+            readBtn.innerHTML = 'Finished'
+                readBtn.classList.add('read')
+                dataCard.classList.add('isRead')
+        }
+
+
         readBtn.addEventListener('click', () => {
             if (readBtn.innerHTML === 'Finished') {
                 readBtn.innerHTML = 'To read'
                 readBtn.classList.remove('read')
                 dataCard.classList.remove('isRead')
-                readInput.checked = false;
+                let obj = myLibrary.find(arr => arr.title === newBook.title)
+                obj.isread = false;
             } else if (readBtn.innerHTML === 'To read') {
                 readBtn.innerHTML = 'Finished'
                 readBtn.classList.add('read')
                 dataCard.classList.add('isRead')
-                readInput.checked = true;
+                let obj = myLibrary.find(arr => arr.title === newBook.title)
+                obj.isread = true;
             }
 
         })
-        cardBtn.appendChild(readBtn)
 
         const editBtn = document.createElement('button')
         editBtn.innerHTML = 'Edit'
         editBtn.classList.add('card__edit')
-        editBtn.addEventListener('click', () => { console.log('edit') })
         cardBtn.appendChild(editBtn)
+        editBtn.addEventListener('click', this.showEditModal)
 
 
         const deleteBtn = document.createElement('button')
@@ -144,6 +151,12 @@ class App {
             let bookId = myLibrary.find(arr => arr.id === newBook.id)
             myLibrary.pop(bookId)
         });
+    }
+
+    showEditModal(newBook) {
+        modal.style.display = "block"
+        modalBackground.style.display = "block"
+        titleInput.value = newBook.title
     }
 }
 
@@ -159,12 +172,17 @@ const testData = fetch('https://www.googleapis.com/books/v1/volumes?q=flights+in
         //authors, categories, imageLinks.thumbnail, language, pageCount, title
     });
 
-const app = new App(); // create App object and store data in it
+
+// create App object and store data in it
+const app = new App();
 
 
 
-// Challenge ideas
+/* Challenges---------------------
 
-//  add bookcover photos
-//  storage api
+Edit button
+Refactor repeating code( isRead )
+Connect with google books api and enable search function
+Sort function
 
+-----------------------------------*/
