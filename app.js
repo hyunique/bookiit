@@ -134,11 +134,18 @@ class App {
 
         })
 
-        const editBtn = document.createElement('button')
-        editBtn.innerHTML = 'Edit'
-        editBtn.classList.add('card__edit')
-        cardBtn.appendChild(editBtn)
-        editBtn.addEventListener('click', this.showEditModal)
+        // const editBtn = document.createElement('button')
+        // editBtn.innerHTML = 'Edit'
+        // editBtn.classList.add('card__edit')
+        // cardBtn.appendChild(editBtn)
+        // editBtn.addEventListener('click', () => {
+        //     modal.style.display = "block"
+        //     modalBackground.style.display = "block"
+        //     titleInput.value = newBook.title
+        //     authorInput.value = newBook.author
+        //     pagesInput.value = newBook.pages
+                
+        // })
 
 
         const deleteBtn = document.createElement('button')
@@ -153,11 +160,12 @@ class App {
         });
     }
 
-    showEditModal(newBook) {
-        modal.style.display = "block"
-        modalBackground.style.display = "block"
-        titleInput.value = newBook.title
-    }
+    // showEditModal() {
+    //     modal.style.display = "block"
+    //     modalBackground.style.display = "block"
+    //     titleInput.value = newBook.title
+    //     console.log(newBook)
+    // }
 }
 
 
@@ -180,7 +188,6 @@ const app = new App();
 
 /* Challenges---------------------
 
-Edit button
 Refactor repeating code( isRead )
 Connect with google books api and enable search function
 Sort function
