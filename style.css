@@ -225,6 +225,7 @@ main {
     width: 320px;
 }
 
+
 .modalBackground {
     display: none;
     position: absolute;
@@ -371,10 +372,10 @@ to apply hover effect only on enabled button
     grid-row-end: 2;
 }
 
-.card__read.read {
+.card__read.isRead {
     background-color: var(--color-brand--4);
 }
-.card__read.read:hover{
+.card__read.isRead:hover{
     background-color:#6b9f86;
 }
 

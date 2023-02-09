@@ -1,7 +1,9 @@
+'use strict';
+
 
 const openModalBtn = document.querySelector('.openModalBtn')
-const modal = document.querySelector('.modal')
 const modalBackground = document.querySelector('.modalBackground')
+const modal = document.querySelector('.modal')
 const closeModal = document.querySelector('.closeModal')
 const form = document.querySelector('.form')
 const authorInput = form.querySelector('#author')
@@ -11,9 +13,8 @@ const readInput = form.querySelector('#read')
 const addBookBtn = form.querySelector('.addBookBtn')
 const cardContainer = document.querySelector('.container__card')
 const card = document.querySelector('.data__card')
-const cardEdit = document.querySelector('.card__edit')
 let myLibrary= []
-
+let bookFound
 
 
 class NewBook {
@@ -37,7 +38,7 @@ class App {
         // Attach event handlers to modal 
         openModalBtn.addEventListener('click', this.showModal)
         closeModal.addEventListener('click', this.hideModal)
-        addBookBtn.addEventListener('click', this.newBook.bind(this))
+        addBookBtn.addEventListener('click', this.newBook.bind(this)) // 'this' here is bound to App object
         }
 
     showModal() {
@@ -72,10 +73,11 @@ class App {
         this.hideModal()
         this.renderLibraryCard(newBook)
         myLibrary.push(newBook)
-        // this.deleteData()
     }
 
-
+    findBookId (newBook) {
+        bookFound = myLibrary.find(arr => arr.id === newBook.id)
+    }
     // render new object in the book card
     renderLibraryCard(newBook) {//add input type checkbox
         const containerCard = document.querySelector('.container__card')
@@ -90,51 +92,65 @@ class App {
          <h2 class="book__title">${newBook.title}</h2>
          <h2 class="book__author">🖊️ by ${newBook.author}</h2>
          <h2 class="book__author">📖 ${newBook.pages} pages</h2>
-         <div>
-           `;
+        </div>
+        `;
         dataCard.insertAdjacentHTML('afterbegin', html)
-
+        
         const cardBtn = document.createElement('div')
         cardBtn.classList.add('card__btn')
         dataCard.appendChild(cardBtn)
 
         const readBtn = document.createElement('button')
-            // let readBtnHtml = `
-            // <label class="switch">
-            //     <input type="checkbox">
-            //     <span class="slider round"></span>
-            // </label>`
-            // cardBtn.insertAdjacentHTML('afterbegin', readBtnHtml)
-
-     
         readBtn.innerHTML = 'To read'
         readBtn.classList.add('card__read')
         cardBtn.appendChild(readBtn)
         if (readInput.checked) {
             readBtn.innerHTML = 'Finished'
-                readBtn.classList.add('read')
-                dataCard.classList.add('isRead')
-        }
-
+            readBtn.classList.add('isRead')
+            dataCard.classList.add('isRead')
+        };
 
         readBtn.addEventListener('click', () => {
-            if (readBtn.innerHTML === 'Finished') {
+            this.findBookId(newBook) // gives bookFound parameter
+            readBtn.classList.toggle('isRead')
+            dataCard.classList.toggle('isRead')
+            if (bookFound.isread === true) {
+                bookFound.isread = false;
                 readBtn.innerHTML = 'To read'
-                readBtn.classList.remove('read')
-                dataCard.classList.remove('isRead')
-                let obj = myLibrary.find(arr => arr.title === newBook.title)
-                obj.isread = false;
-            } else if (readBtn.innerHTML === 'To read') {
+            } else {
+                bookFound.isread = true;
                 readBtn.innerHTML = 'Finished'
-                readBtn.classList.add('read')
-                dataCard.classList.add('isRead')
-                let obj = myLibrary.find(arr => arr.title === newBook.title)
-                obj.isread = true;
             }
-
         })
 
-        // const editBtn = document.createElement('button')
+        const deleteBtn = document.createElement('button')
+        deleteBtn.innerHTML = 'Delete'
+        deleteBtn.classList.add('card__delete')
+        cardBtn.appendChild(deleteBtn)
+        deleteBtn.addEventListener('click', (e) => {
+            let card = e.target.parentNode.parentNode
+            card.parentElement.removeChild(card)
+            this.findBookId(newBook)
+            myLibrary.pop(bookFound);
+        });
+
+         // <div class="card__btn">
+        //  <button class="card__read">To read</button>
+        //  <button class="card__delete">Delete</button>
+        // </div>
+
+        // const createElement = function (elName, el, parentEl) {
+        //     elName = document.createElement(`${el}`)  
+        //     elName.classList.add(`${elName}`)  
+        //     parentEl.appendChild(elName)
+        // }
+        
+         // const cardBtn = document.querySelector('.card__btn')
+        // const readBtn = document.querySelector('.card__read')
+        // const deleteBtn = document.querySelector('.card__delete')
+     
+    }
+   // const editBtn = document.createElement('button')
         // editBtn.innerHTML = 'Edit'
         // editBtn.classList.add('card__edit')
         // cardBtn.appendChild(editBtn)
@@ -146,19 +162,6 @@ class App {
         //     pagesInput.value = newBook.pages
                 
         // })
-
-
-        const deleteBtn = document.createElement('button')
-        deleteBtn.innerHTML = 'Delete'
-        deleteBtn.classList.add('card__delete')
-        cardBtn.appendChild(deleteBtn)
-        deleteBtn.addEventListener('click', (e) => {
-            let card = e.target.parentNode.parentNode
-            card.parentElement.removeChild(card)
-            let bookId = myLibrary.find(arr => arr.id === newBook.id)
-            myLibrary.pop(bookId)
-        });
-    }
 
     // showEditModal() {
     //     modal.style.display = "block"
@@ -186,10 +189,3 @@ const app = new App();
 
 
 
-/* Challenges---------------------
-
-Refactor repeating code( isRead )
-Connect with google books api and enable search function
-Sort function
-
------------------------------------*/
