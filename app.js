@@ -171,9 +171,9 @@ class App {
     // }
 }
 
-
+/*
 // Google Books API
-const testData = fetch('https://www.googleapis.com/books/v1/volumes?q=flights+inauthor:olga&key=AIzaSyDLXEtdYc3Vd0fhAsIoXR-rjr1mMAW_32w')
+const _testData = fetch('https://www.googleapis.com/books/v1/volumes?q=flights+inauthor:olga&key=AIzaSyDLXEtdYc3Vd0fhAsIoXR-rjr1mMAW_32w')
     .then(response => response.json())
     .then(result => {
         const bookInfo = result.items[0].volumeInfo;
@@ -182,10 +182,13 @@ const testData = fetch('https://www.googleapis.com/books/v1/volumes?q=flights+in
         console.log(bookInfo.imageLinks.thumbnail)
         //authors, categories, imageLinks.thumbnail, language, pageCount, title
     });
-
+*/
 
 // create App object and store data in it
 const app = new App();
 
 
 
+TODO 
+// Connect with google books api and enable search function
+// Sort function
